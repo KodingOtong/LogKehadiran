@@ -67,7 +67,10 @@
             <select id="status" required>
                 <option value="">Pilih Status Kehadiran</option>
                 <option value="Hadir">Hadir</option>
-                <option value="Tidak Hadir">Tidak Hadir</option>
+                <option value="Absen">Absen</option>
+                <option value="Cuti">Cuti</option>
+                <option value="Tugas Belajar">Tugas Belajar</option>
+                <option value="Dinas Luar">Dinas Luar</option>
             </select>
             <input type="date" id="date" required>
             <button type="submit">Simpan</button>
@@ -85,6 +88,21 @@
             </tbody>
         </table>
     </div>
+    <div class="container">
+        <h1>Status Kehadiran Dosen</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody id="display-log">
+                <!-- Data untuk mahasiswa akan ditampilkan di sini -->
+            </tbody>
+        </table>
+    </div>
     <script>
         document.getElementById('attendance-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -94,6 +112,7 @@
             const date = document.getElementById('date').value;
 
             const tableBody = document.getElementById('attendance-log');
+            const displayBody = document.getElementById('display-log');
             const row = document.createElement('tr');
 
             row.innerHTML = `
@@ -103,6 +122,10 @@
             `;
 
             tableBody.appendChild(row);
+
+            // Menampilkan data di tabel untuk mahasiswa
+            const displayRow = row.cloneNode(true);
+            displayBody.appendChild(displayRow);
 
             // Reset form setelah submit
             document.getElementById('attendance-form').reset();
