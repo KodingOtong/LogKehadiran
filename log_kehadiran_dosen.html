@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Kehadiran Dosen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Log Kehadiran Dosen</h1>
+        <form id="attendance-form">
+            <input type="text" id="name" placeholder="Nama Dosen" required>
+            <select id="status" required>
+                <option value="">Pilih Status Kehadiran</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+            <input type="date" id="date" required>
+            <button type="submit">Simpan</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody id="attendance-log">
+                <!-- Data akan ditambahkan di sini -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('attendance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const status = document.getElementById('status').value;
+            const date = document.getElementById('date').value;
+
+            const tableBody = document.getElementById('attendance-log');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${status}</td>
+                <td>${date}</td>
+            `;
+
+            tableBody.appendChild(row);
+
+            // Reset form setelah submit
+            document.getElementById('attendance-form').reset();
+        });
+    </script>
+</body>
+</html>
